@@ -8,7 +8,7 @@ const NavBar = React.createClass({
                 {
                     path: 'login.html',
                     label: 'Login',
-                    extraClass: '',
+                    extraClass: 'login-link',
                     visible: !user
                 },
                 {
@@ -41,6 +41,10 @@ const NavBar = React.createClass({
 
     componentDidMount() {
         const that = this;
+        $('.login-link').on('click', function () {
+            location.href = 'login.html';
+        });
+
         $('.logout-link').on('click', function () {
             localStorage.removeItem('user');
             location.href = 'login.html';

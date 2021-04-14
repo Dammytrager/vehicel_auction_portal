@@ -1,5 +1,7 @@
 (function ($) {
 
+    const user = JSON.parse(localStorage.getItem('user'));
+
     getActiveVehicles();
 
     function getActiveVehicles() {
@@ -21,13 +23,17 @@
                 label: 'Comment',
                 target: '#base-modal',
                 classType: 'comment-btn'
-            },
-            {
+            }
+        ];
+
+        if (!(user && (user.is_admin || user.is_ceo_cto))) {
+            actions.push({
                 label: 'Vote',
                 target: '#base-modal',
                 classType: 'vote-btn'
-            }
-        ];
+            })
+        }
+
         ReactDOM.render(<Table data={vehicles} actions={actions} />, document.querySelector('#vehicles'));
         ReactDOM.render(<NavBar actions={actions} />, document.querySelector('#navbar'));
     }
