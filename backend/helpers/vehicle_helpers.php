@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Arrange the vehicles and their comments
+ * @param $vehicles
+ * @param false $featured
+ * @return array
+ */
 function processResult($vehicles, $featured = false)
 {
     $tmp = [];

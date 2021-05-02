@@ -1,3 +1,11 @@
+// This file holds all the helper functions that are used to interact with the backend
+
+/**
+ * Adds a comment on a vehicle
+ * @param id
+ * @param comment
+ * @param actions
+ */
 function addComment(id, comment, actions) {
     $.ajax({
         url: "../../backend/api/add-comment.php",
@@ -18,10 +26,15 @@ function addComment(id, comment, actions) {
     })
 }
 
+/**
+ * Vote on a vehicle
+ * @param id
+ * @param actions
+ */
 function voteVehicle(id, actions) {
-    grecaptcha.ready(function() {
+    grecaptcha.ready(function() { // Google recaptcha to prevent bots from voting
         grecaptcha.execute('6LfZpakaAAAAAFVdIyUHg8m3FYljxa3wiJPd9GS4', {action: 'submit'}).then(function(token) {
-            // Add your logic to submit to your backend server here.
+
             $.ajax({
                 url: "../../backend/api/vote.php",
                 contentType: "application/json; charset=utf-8",
@@ -48,6 +61,12 @@ function voteVehicle(id, actions) {
     });
 }
 
+
+/**
+ * Bid on a vehicle
+ * @param data
+ * @param actions
+ */
 function bidVehicle(data, actions) {
   $.ajax({
       url: "../../backend/api/bid.php",
@@ -65,6 +84,13 @@ function bidVehicle(data, actions) {
   })
 }
 
+
+/**
+ * Adds a vehicle
+ * @param name
+ * @param image
+ * @param actions
+ */
 function addVehicle(name, image, actions) {
     let reader = new FileReader();
     reader.onloadend = function() {
@@ -93,6 +119,13 @@ function addVehicle(name, image, actions) {
     reader.readAsDataURL(image);
 }
 
+
+/**
+ * Adds a user
+ * @param username
+ * @param password
+ * @param role
+ */
 function addUser(username, password, role) {
     const data = {username, password, [role]: 1};
 

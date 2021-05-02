@@ -1,8 +1,9 @@
+/**
+ * This function is run when the signup page loads
+ */
 (function ($) {
     let loginBtn = $('#login-btn'),
-        loginInput = $('.login-input'),
-        loginAlertTemplate = $('#login-alert-template'),
-        loginAlertTarget = $('#login-alert-target');
+        loginInput = $('.login-input');
 
     loginInput.on('change keyup', function () {
         btnValid();
@@ -14,6 +15,9 @@
         signup();
     })
 
+    /**
+     * Disable the submit button if the firm is not valid
+     */
     function btnValid() {
         let isValid = true;
         loginInput.each((index, item) => {
@@ -26,11 +30,9 @@
         loginBtn.attr('disabled', !isValid)
     }
 
-    function render(template, target, object) {
-        const rendered = Mustache.render(template, object);
-        target.html(rendered);
-    }
-
+    /**
+     * create a new user
+     */
     function signup() {
         const data = {
             username: $('#username').val(),

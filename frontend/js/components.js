@@ -1,3 +1,11 @@
+/**
+ * This file holds all the components used in the project
+ */
+
+
+/**
+ * NavBar Component
+ */
 const NavBar = React.createClass({
     getInitialState() {
         const user = JSON.parse(localStorage.getItem('user'));
@@ -112,6 +120,10 @@ const NavBar = React.createClass({
     }
 });
 
+
+/**
+ * SideBar component
+ */
 const SideBar = React.createClass({
     propTypes: {
         path: React.PropTypes.string
@@ -193,6 +205,9 @@ const SideBar = React.createClass({
     }
 });
 
+/**
+ * Table component
+ */
 const Table = React.createClass({
     propTypes: {
         data: React.PropTypes.any,
@@ -290,6 +305,10 @@ const Table = React.createClass({
     }
 });
 
+
+/**
+ * UsersTable component
+ */
 const UsersTable = React.createClass({
     propTypes: {
         data: React.PropTypes.any
@@ -331,6 +350,10 @@ const UsersTable = React.createClass({
     }
 });
 
+
+/**
+ * BidsTable component
+ */
 const BidsTable = React.createClass({
     propTypes: {
         data: React.PropTypes.any
@@ -378,6 +401,10 @@ const BidsTable = React.createClass({
     }
 });
 
+
+/**
+ * Actions component - renders the action button on each table
+ */
 const Actions = React.createClass({
 
     propTypes: {
@@ -417,6 +444,10 @@ const Actions = React.createClass({
     }
 });
 
+
+/**
+ * BaseModal component - Renders the modal dialog
+ */
 const BaseModal = React.createClass({
     render() {
         return (
@@ -428,6 +459,10 @@ const BaseModal = React.createClass({
     }
 });
 
+
+/**
+ * ViewVehicleModal component
+ */
 const ViewVehicleModal = React.createClass({
     propTypes: {
         title: React.PropTypes.string,
@@ -478,6 +513,10 @@ const ViewVehicleModal = React.createClass({
     }
 });
 
+
+/**
+ * CommentModal component
+ */
 const CommentModal = React.createClass({
     propTypes: {
         id: React.PropTypes.any,
@@ -558,6 +597,10 @@ const CommentModal = React.createClass({
     }
 });
 
+
+/**
+ * BidModal components.js
+ */
 const BidModal = React.createClass({
     propTypes: {
         id: React.PropTypes.any,
@@ -646,6 +689,10 @@ const BidModal = React.createClass({
     }
 });
 
+
+/**
+ * VoteModal component
+ */
 const VoteModal = React.createClass({
     propTypes: {
         id: React.PropTypes.any,
@@ -703,6 +750,10 @@ const VoteModal = React.createClass({
     }
 });
 
+
+/**
+ * AddVehicleModal component
+ */
 const AddVehicleModal = React.createClass({
     propTypes: {
         actions: React.PropTypes.any,
@@ -801,6 +852,10 @@ const AddVehicleModal = React.createClass({
     }
 });
 
+
+/**
+ * AddUserModal component
+ */
 const AddUserModal = React.createClass({
     propTypes: {
         count: React.PropTypes.any
@@ -916,6 +971,7 @@ const AddUserModal = React.createClass({
         );
     }
 });
+
 
 const path = window.location.href.split('/').pop();
 const domContainer = document.querySelector('#sidebar');

@@ -1,9 +1,15 @@
+/**
+ * This function is run when the featured vehicles page loads
+ */
 (function ($) {
 
     const user = JSON.parse(localStorage.getItem('user'));
 
     getFeaturedVehicles();
 
+    /**
+     * Gets the featured vehicles from the backend
+     */
     function getFeaturedVehicles() {
         $.ajax({
             url: "../../backend/api/featured-vehicles.php",
@@ -11,6 +17,13 @@
         })
     }
 
+    /**
+     * This function runs when the featured vehicles are successfully fetched from the backend
+     * It renders the featured vehicles in a table and also renders the navbar
+     * @param data
+     * @param textStatus
+     * @param jqXHR
+     */
     function base (data, textStatus, jqXHR) {
         vehicles = JSON.parse(data);
         const actions = [

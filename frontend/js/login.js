@@ -1,8 +1,9 @@
+/**
+ * This function is run when the login page loads
+ */
 (function ($) {
     let loginBtn = $('#login-btn'),
-        loginInput = $('.login-input'),
-        loginAlertTemplate = $('#login-alert-template'),
-        loginAlertTarget = $('#login-alert-target');
+        loginInput = $('.login-input');
 
     const message = sessionStorage.getItem('message');
     const redirect = sessionStorage.getItem('redirect');
@@ -36,11 +37,9 @@
         loginBtn.attr('disabled', !isValid)
     }
 
-    function render(template, target, object) {
-        const rendered = Mustache.render(template, object);
-        target.html(rendered);
-    }
-
+    /**
+     * attempt to log the user into the applications
+     */
     function login() {
         const data = {
             username: $('#username').val(),

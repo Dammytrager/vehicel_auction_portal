@@ -2,6 +2,10 @@
 
 require '../config/db.php';
 
+/**
+ * Responsible for fetching and storing items in the database
+ * Class DB
+ */
 class DB
 {
 
@@ -14,6 +18,11 @@ class DB
 
     }
 
+
+    /**
+     * Get all vehicles from the database with respective comments
+     * @return array
+     */
     public function getAllVehicles()
     {
 
@@ -41,6 +50,11 @@ class DB
         return $vehicles;
     }
 
+
+    /**
+     * Gets the featured vehicles - Vehicles from the previous week
+     * @return array
+     */
     public function getFeaturedVehicles()
     {
 
@@ -67,6 +81,11 @@ class DB
         return $vehicles;
     }
 
+
+    /**
+     * Get active vehicles - Vehicles from the present week
+     * @return array
+     */
     public function getActiveVehicles()
     {
 
@@ -93,6 +112,11 @@ class DB
         return $vehicles;
     }
 
+
+    /**
+     * Get sold out vehicles
+     * @return array
+     */
     public function getSoldOutVehicles()
     {
 
@@ -122,6 +146,11 @@ class DB
         return $vehicles;
     }
 
+
+    /**
+     * Get all bids with their respective users
+     * @return array
+     */
     public function getBids()
     {
 
@@ -148,6 +177,12 @@ class DB
         return $bids;
     }
 
+
+    /**
+     * Add a vehicle
+     * @param $data
+     * @return mixed
+     */
     public function addVehicle($data)
     {
         $query = "INSERT INTO vehicles (`name`, `img_url`, `created_at`) VALUES ('$data->name', '$data->img_url', NOW())";
@@ -157,6 +192,12 @@ class DB
         return $this->connection->lastInsertId();
     }
 
+
+    /**
+     * Vote on a vehicle - increase vehicle vote by 1
+     * @param $id
+     * @return bool
+     */
     public function vote($id)
     {
         $query = "UPDATE vehicles SET votes = votes + 1 WHERE id = '$id'";
@@ -166,6 +207,12 @@ class DB
         return true;
     }
 
+
+    /**
+     * Bid on a vehicle
+     * @param $data
+     * @return bool
+     */
     public function bid($data)
     {
         $query = "INSERT INTO
@@ -177,6 +224,12 @@ class DB
         return true;
     }
 
+
+    /**
+     * Comment on a vehicle
+     * @param $data
+     * @return mixed
+     */
     public function addComment($data)
     {
         $query = "INSERT INTO comments (`vehicle_id`, `comment`, `created_at`) VALUES ('$data->id', '$data->comment', NOW())";
@@ -186,6 +239,11 @@ class DB
         return $this->connection->lastInsertId();
     }
 
+    /**
+     * Create a new user
+     * @param $data
+     * @return false
+     */
     public function createUser($data)
     {
         $query = "SELECT * FROM users WHERE username = '$data->username' LIMIT 1";
@@ -210,6 +268,12 @@ class DB
         return $this->connection->lastInsertId();
     }
 
+
+    /**
+     * Authenticate a user - fetch the user in the db
+     * @param $creds
+     * @return false|array
+     */
     public function login($creds)
     {
         $query = "SELECT id, username, password, is_admin, is_ceo_cto FROM users where username = '$creds->username'";
@@ -225,6 +289,10 @@ class DB
         return $row;
     }
 
+    /**
+     * Get the list of all registered users
+     * @return array
+     */
     public function getRegisteredUsers()
     {
         $users = [];
@@ -240,6 +308,11 @@ class DB
         return $users;
     }
 
+
+    /**
+     * Get the list of all admin users
+     * @return array
+     */
     public function getAdminUsers()
     {
         $users = [];
@@ -255,6 +328,11 @@ class DB
         return $users;
     }
 
+
+    /**
+     * Assign a car to the highest bidder
+     * @return bool
+     */
     public function setBid()
     {
         $vehicles = [];
